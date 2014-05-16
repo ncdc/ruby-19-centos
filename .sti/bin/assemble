@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 #
 # Default STI assemble script for the 'centos-ruby' image.
 #
