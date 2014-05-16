@@ -6,12 +6,12 @@
 [ -f ${HOME}/.bashrc ] && source ${HOME}/.bashrc
 
 function rake_assets_precompile() {
-  [ -f .sti/markers/disable_asset_compilation ] && return 1
-  [ ! -f Gemfile ] && return 1
-  [ ! -f Rakefile ] && return 1
-  ! grep " rails " Gemfile.lock >/dev/null && return 1
-  ! grep " execjs " Gemfile.lock >/dev/null && return 1
-  ! bundle exec "rake -T" | grep "assets:precompile" >/dev/null && return 1
+  [ -f .sti/markers/disable_asset_compilation ] && return 0
+  [ ! -f Gemfile ] && return 0
+  [ ! -f Rakefile ] && return 0
+  ! grep " rails " Gemfile.lock >/dev/null && return 0
+  ! grep " execjs " Gemfile.lock >/dev/null && return 0
+  ! bundle exec "rake -T" | grep "assets:precompile" >/dev/null && return 0
 
   echo "---> Starting asset compilation."
   bundle exec rake assets:precompile
