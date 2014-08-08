@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 #
 # Default STI assemble script for the 'centos-ruby' image.
 #
@@ -21,15 +21,15 @@ function rake_assets_precompile() {
   bundle exec rake assets:precompile
 }
 
-if [ -e /tmp/artifacts/gems.tgz ]; then
+if [ -e $STI_ARTIFACTS_DIR/gems.tgz ]; then
   echo "Restoring build artifacts"
   pushd ${HOME} >/dev/null
-  tar zxf /tmp/artifacts/gems.tgz
+  tar zxf $STI_ARTIFACTS_DIR/gems.tgz
   popd >/dev/null
 fi
 
 app_runtime_dir="${HOME}/src"
-app_src_dir="/tmp/src"
+app_src_dir=$STI_SOURCE_DIR
 
 echo "---> Installing application source"
 mkdir -p ${app_runtime_dir}
