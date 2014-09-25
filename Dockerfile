@@ -12,16 +12,16 @@ MAINTAINER Michal Fojtik <mfojtik@redhat.com>
 
 # Pull in important updates and then install ruby193
 #
-RUN yum install -y centos-release-SCL && \ 
-     yum update -y --enablerepo=centosplus && \
-     yum install -y --enablerepo=centosplus \
+RUN yum install -y centos-release-SCL && \
+    yum update  -y --enablerepo=centosplus && \
+    yum install -y --enablerepo=centosplus \
       gettext tar which ruby193-ruby ruby193-ruby-devel \
       ruby193-rubygem-bundler ruby193-rubygem-rake \
       gcc-c++ automake autoconf curl-devel openssl-devel \
       zlib-devel libxslt-devel libxml2-devel \
       mysql-libs mysql-devel postgresql-devel sqlite-devel \
       nodejs010-nodejs && \
-     yum clean all -y
+    yum clean all -y
 
 # Add configuration files, bashrc and other tweaks
 #
@@ -56,6 +56,4 @@ USER ruby
 
 EXPOSE 9292
 
-# Display STI usage when invoked outside STI builder
-#
-CMD ["/opt/ruby/bin/usage"]
+CMD ["/opt/ruby/bin/sti-helper"]

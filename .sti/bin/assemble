@@ -21,11 +21,9 @@ function rake_assets_precompile() {
   bundle exec rake assets:precompile
 }
 
-if [ -e /tmp/artifacts/gems.tgz ]; then
+if [ "$(ls /tmp/artifacts 2>/dev/null)" ]; then
   echo "Restoring build artifacts"
-  pushd ${HOME} >/dev/null
-  tar zxf /tmp/artifacts/gems.tgz
-  popd >/dev/null
+  mv /tmp/artifacts/* $HOME/.
 fi
 
 app_runtime_dir="${HOME}/src"
